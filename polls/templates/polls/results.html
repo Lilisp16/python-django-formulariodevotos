@@ -1,10 +1,41 @@
-<h1>{{ question.question_text }}</h1>
-<ul>
-  {% for choice in question.choice_set.all %}
-  <li>
-    {{ choice.choice_text }} -- {{ choice.votes }}
-    vote{{choice.votes|pluralize}}
-  </li>
-  {% endfor %}
-</ul>
-<a href="{% url 'polls:detail' question.id %}">¿Te gustaría votar de Nuevo?</a>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'polls/style.css'%}" />
+    <link rel="stylesheet" href="{% static 'polls/results.css'%}" />
+    <title>Resultado de Votos</title>
+  </head>
+
+  <body>
+    <header>
+      <h1>{{ question.question_text }}</h1>
+    </header>
+
+    <h2>Total Votos</h2>
+
+    <ul>
+      {% for choice in question.choice_set.all %}
+      <li>
+        {{ choice.choice_text }} -- {{ choice.votes }}
+        vote{{choice.votes|pluralize}}
+      </li>
+      {% endfor %}
+    </ul>
+    <a href="{% url 'polls:detail' question.id %}"
+      >¿Te gustaría votar de Nuevo?</a
+    >
+
+    <footer>
+      <a href="https://github.com/Lilisp16">www.LiliSanz.com</a>
+      <a href="#">Contacto</a>
+      <a href="#">¿Quieres ser profesor?</a>
+      <a href="#">Politica de Privacidad</a>
+      <a href="#">Politica de condiciones</a>
+    </footer>
+  </body>
+</html>
